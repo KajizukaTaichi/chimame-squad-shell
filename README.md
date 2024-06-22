@@ -1,2 +1,2 @@
 # Chimame Squad Shell
-The inovetive model shell with humor.
+The innovetive and experimental shell with humor.
