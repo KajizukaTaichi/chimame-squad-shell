@@ -30,7 +30,10 @@ class Chimame:
         if command[0] == "pwd":
             print(os.getcwd())
         elif command[0] == "cd":
-            os.chdir(self.eval(" ".join(command[1:])))
+            try:
+                os.chdir(self.eval(" ".join(command[1:])))
+            except Exception as e:
+                print(f'Error: {e}')
         elif command[0] == "char":
             self.active = self.eval(" ".join(command[1:]))
         elif command[0] == "let":
