@@ -35,7 +35,11 @@ class Chimame:
             except Exception as e:
                 print(f'Error: {e}')
         elif command[0] == "char":
-            self.active = self.eval(" ".join(command[1:]))
+            char = self.eval(" ".join(command[1:]))
+            if char in self.characher.keys():
+                self.active = char
+            else:
+                print("Error: undefined characher")
         elif command[0] == "let":
             splited = " ".join(command[1:]).split("=")
             name, value = splited[0], "=".join(splited[1:])
@@ -45,13 +49,13 @@ class Chimame:
             splited = " ".join(command[1:]).split("=")
             name, value = splited[0], "=".join(splited[1:])
             self.share[name.strip()] = self.eval(value)
-            print(self.share)
+            print({k:v for k, v in self.share.items() if k not in ["__builtins__"]})
         else:
             print(self.eval(" ".join(command)))
 
     def eval(self, command: str):
         try:
-            return eval(command)
+            return eval(command, self.share, self.characher[self.active])
         except Exception as e:
             print(f"Error: {e}")
 
