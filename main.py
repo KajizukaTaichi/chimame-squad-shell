@@ -34,6 +34,13 @@ class Chimame:
                 os.chdir(self.eval(" ".join(command[1:])))
             except Exception as e:
                 print(f'Error: {e}')
+        elif command[0] == "mkdir":
+            try:
+                os.mkdir(self.eval(" ".join(command[1:])))
+            except Exception as e:
+                print(f'Error: {e}')
+        elif command[0] == "echo":
+            print(self.eval(" ".join(command[1:])))
         elif command[0] == "char":
             char = self.eval(" ".join(command[1:]))
             if char in self.characher.keys():
